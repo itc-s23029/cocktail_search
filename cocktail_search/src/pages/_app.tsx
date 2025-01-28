@@ -1,6 +1,13 @@
-import "@/styles/globals.css";
-import type { AppProps } from "next/app";
+import { AppProps } from 'next/app';  // Next.jsの型
+import { AuthProvider } from '@/Context/Auth';  // AuthProviderのインポート
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+function MyApp({ Component, pageProps }: AppProps) {
+  return (
+      // AuthProviderでラップする
+      <AuthProvider>
+        <Component {...pageProps} />  {/* コンポーネントに認証情報を提供 */}
+      </AuthProvider>
+  );
 }
+export default MyApp;
+
