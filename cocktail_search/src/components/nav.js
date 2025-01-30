@@ -10,6 +10,11 @@ export default function Nav() {
                     </Link>
                 </li>
                 <li>
+                    <Link href="/clist">
+                        カクテル一覧
+                    </Link>
+                </li>
+                <li>
                     <Link href="/csearch">
                         カクテル検索
                     </Link>
