@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import axios from "axios";
 
 const ApiTest = () => {
     const [data, setData] = useState<string | null>(null);
