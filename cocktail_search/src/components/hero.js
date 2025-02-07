@@ -1,7 +1,7 @@
 export default function Hero() {
     return (
         <div>
-            <h1>HOME</h1>
+            <h1 className="title">Cocktail App</h1>
         </div>
     )
 }
