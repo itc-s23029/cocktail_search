@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import Layout from "@/components/layout";
 import { AuthProvider } from '@/Context/Auth';  // AuthProviderのインポート
+import "@/styles/main.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
