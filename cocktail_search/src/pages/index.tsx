@@ -2,7 +2,6 @@ import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { useState } from "react"; // ★ 追加：メニューの開閉状態を管理
 import Nav from "@/components/nav"; // ★ 追加：ハンバーガーメニューをインポート
-import "@/styles/main.css";
 import Link from "next/link";
 
 export default function Home() {

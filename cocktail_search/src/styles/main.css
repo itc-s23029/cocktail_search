@@ -6,7 +6,7 @@
     height: 100vh; /* ビューポート高さ100% */
 
     /* 背景画像の指定 */
-    background-image: url("../images/bacimage.jpg"); /* 背景画像を指定 */
+    background-image: url("../../public/bacimage.jpg"); /* 背景画像を指定 */
     background-size: cover; /* 画像をコンテナいっぱいに広げる */
     background-position: center; /* 画像の中央を基準に配置 */
     background-repeat: no-repeat; /* 画像の繰り返しを防ぐ */
@@ -46,7 +46,7 @@
     left: -10px; /* ★ 左端にぴったり配置 */
     width: 200px; /* ★ ロゴの横幅 */
     height: 150px; /* ★ ロゴの高さ */
-    background-image: url("../images/logo.png"); /* ★ ロゴ画像 */
+    background-image: url("../../public/logo.png"); /* ★ ロゴ画像 */
     background-size: contain; /* 画像を枠内に収める */
     background-repeat: no-repeat;
     background-position: center;
@@ -76,7 +76,7 @@
     top: 150px; /* ★ 上からの距離を調整 */
     right: 100px; /* ★ 右端からの余白を確保 */
     text-decoration: none;
-    background: linear-gradient(180deg, #00000000 0%, #000000 100%), url('../images/hist.png');
+    background: linear-gradient(180deg, #00000000 0%, #000000 100%), url('../../public/hist.png');
     background-size: cover;
     color: #fff;
     font-family: serif;
@@ -105,7 +105,7 @@
 }
 
 .pgmove {
-    background: #dedede url('../images/arrowR.png')  no-repeat;
+    background: #dedede url('../../public/arrowR.png')  no-repeat;
     background-position: 320px;
     background-size: 23% auto;
     margin: 15px; /* ボタン同士の間隔 */
