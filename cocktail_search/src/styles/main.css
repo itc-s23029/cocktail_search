@@ -1,35 +1,66 @@
 .p-fv {
+    position: fixed; /* 背景を固定（スクロールしても動かない） */
+    top: 0;
+    left: 0;
+    width: 100vw; /* ビューポート幅100% */
+    height: 100vh; /* ビューポート高さ100% */
+
+    /* 背景画像の指定 */
+    background-image: url("../../public/bacimage.jpg"); /* 背景画像を指定 */
+    background-size: cover; /* 画像をコンテナいっぱいに広げる */
+    background-position: center; /* 画像の中央を基準に配置 */
+    background-repeat: no-repeat; /* 画像の繰り返しを防ぐ */
+}
+
+/* === ★ 半透明のカラーバー（ページ上部に固定） === */
+.color-label {
+    position: absolute; /* `.p-fv` の中で絶対位置指定 */
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 800px;
-
-    /* 背景画像を表示 */
-    background-image: url(../images/gku.png);
-
-    position: relative;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    height: 135px; /* バーの高さを調整 */
+    background: rgba(63, 50, 120, 0.7); /* 赤色 + 透明度70% */
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-left: 28px;
-    padding-right: 28px;
+    font-size: 24px;
+    font-weight: bold;
 }
 
+.content {
+    margin-top: 100px; /* ★ カラーバーとコンテンツの間に余白を追加 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* === ★ カラーバー内のテキストのスタイル === */
+.color-label h1 {
+    margin: 0;
+    color: white;
+}
 
 .logo {
-    width: 210px;
-    margin-top: 14px;
-    background-image: url('../images/logo.png');
-    background-size: contain;
+    position: absolute; /* ★ 画面の左上に固定 */
+    top: -10px; /* ★ 上端にぴったり配置 */
+    left: -10px; /* ★ 左端にぴったり配置 */
+    width: 200px; /* ★ ロゴの横幅 */
+    height: 150px; /* ★ ロゴの高さ */
+    background-image: url("../../public/logo.png"); /* ★ ロゴ画像 */
+    background-size: contain; /* 画像を枠内に収める */
     background-repeat: no-repeat;
     background-position: center;
+    margin: 0; /* ★ 余計な余白をなくす */
+    padding: 0; /* ★ 余計な余白をなくす */
+    z-index: 10; /* ★ .color-label の上に配置 */
+    cursor: pointer;
 }
 
 .header {
-    margin: 20px;
+    margin: 1px;
     display: flex;
     justify-content: space-between;
+    background-size: cover;
     background-color:#DAD0FF;
 }
 
@@ -37,112 +68,120 @@
     text-decoration: none;
     color: #79001a;
     font-family: serif;
+    text-align:left;
 }
 
 .history {
+    position: absolute; /* ★ ページの右側に配置 */
+    top: 150px; /* ★ 上からの距離を調整 */
+    right: 100px; /* ★ 右端からの余白を確保 */
     text-decoration: none;
-    background: linear-gradient(180deg, #00000066 90%, #00000066 100%), url('../images/hist.png');
+    background: linear-gradient(180deg, #00000000 0%, #000000 100%), url('../../public/hist.png');
+    background-size: cover;
     color: #fff;
     font-family: serif;
-    padding: 10px;
-    border-radius: 5px;
-}
-.pgmove {
-    text-decoration: none;
-    background-color: #d3d3d3;
-    color: #000000;
-    padding: 10px;
-    border-radius: 5px;
-}
-.pgmove::after {
-    content: "▶";
-    color: #fff;
-    position: absolute;
-    top: calc(50% - .5em);
-    right: 1rem;
-}
 
-.hamburger-icon {
-    font-size: 24px;
+    width: 45%;  /* ★ 横幅を250pxに指定 */
+    height: 50%; /* ★ 縦幅を100pxに指定 */
+
+    border-radius: 5px;
+    text-align: center;
+    display: flex; /* ★ テキストを中央揃え */
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    z-index: 1000;
+}
+.history:hover {
+    background-color: rgba(255, 255, 255, 1);
+    transform: scale(1.05); /* ホバー時に少し拡大 */
 }
 
-.homebt {
+.button-container {
+    display: flex;
+    flex-direction: column; /* ★ ボタンを縦に並べる */
+    align-items: flex-start; /* ★ 左寄せ */
+    padding-left: 200px; /* ★ 左端にぴったりくっつかないように余白を確保 */
+    padding-top: 150px; /* ★ カラーラベルとの間隔を調整 */
+}
+
+.pgmove {
+    background: #dedede url('../../public/arrowR.png')  no-repeat;
+    background-position: 320px;
+    background-size: 23% auto;
+    margin: 15px; /* ボタン同士の間隔 */
+    padding: 30px 0;
+    width: 400px;
+    font-size: 45px; /* ★ ボタンの文字サイズを大きく */
+    text-align: left;
+    border-radius: 8px; /* ★ 角を少し丸める */
+    cursor: pointer;
+    transition: all 0.3s ease-in-out; /* ホバー時のアニメーション */
+    color: #0a0a0a;
+    display: inline-block;
+}
+
+.pgmove:hover {
+    background-color: rgba(255, 255, 255, 1);
+    transform: scale(1.05); /* ホバー時に少し拡大 */
+}
+
+/* === ハンバーガーアイコン（☰）のデザイン === */
+.hamburger-icon {
+    position: absolute;
+    top: 5px;
+    right: 20px;
+    font-size: 100px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    z-index: 20;
+}
+
+/* === メニューのオーバーレイ（スライドイン） === */
+.menu-overlay {
     position: fixed;
     top: 0;
-    right: -250px; /* 画面外に配置 */
-    width: 250px;
+    right: -50%; /* 初期状態では画面外に隠す */
+    width: 300px;
     height: 100%;
-    background: white;
-    box-shadow: -3px 0 5px rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
     padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: right 0.5s ease-in-out;
+    z-index: 25;
 }
 
-.horebt {
-    font-size: 24px;
-    cursor: pointer;
+/* ★ メニューが開いたときのスタイル */
+.menu-overlay.open {
+    right: 0; /* 画面右側にスライドイン */
+}
+
+/* === 閉じるボタン（×）のデザイン === */
+.close-btn {
     position: absolute;
-    top: 10px;
+    top: -25px;
     right: 20px;
+    font-size: 150px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
 }
 
-.homebt ul {
-    width: 100%;
-    text-align: center;
+/* === メニュー内のリンクスタイル === */
+.menu-overlay nav ul {
+    list-style: none;
+    padding: 0;
 }
 
-.homebt ul li {
+.menu-overlay nav ul li {
     margin: 20px 0;
 }
 
-#menu-toggle {
-    display: none; /* チェックボックスを隠す */
+.menu-overlay nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 25px;
 }
 
-/* ✅ スライドイン（メニューを表示） */
-#menu-toggle:checked ~ .homebt {
-    animation: slideIn 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-}
-
-/* ✅ スライドアウト（メニューを閉じる） */
-#menu-toggle:not(:checked) ~ .homebt {
-    animation: slideOut 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-}
-
-
-/* === アニメーション（スライドイン） === */
-@keyframes slideIn {
-    0% {
-        transform: translateX(180px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateX(0);
-    }
-    40%, 100% {
-        opacity: 1;
-    }
-}
-
-/* === アニメーション（スライドアウト） === */
-@keyframes slideOut {
-    0% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    60% {
-        opacity: 0;
-    }
-    100% {
-        transform: translateX(180px);
-        opacity: 0;
-    }
-}

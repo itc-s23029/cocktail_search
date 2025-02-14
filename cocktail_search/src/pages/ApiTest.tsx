@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 
-
 const ApiTest = () => {
     const [data, setData] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
