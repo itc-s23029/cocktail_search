@@ -1,4 +1,6 @@
+// firebase.ts
 import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -10,9 +12,11 @@ const firebaseConfig = {
     measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 };
 
-// Firebase初期化
+// Firebaseの初期化
 const app = initializeApp(firebaseConfig);
 
-// `auth`インスタンスの
+// Firebase認証のインスタンスを取得
+export const auth = getAuth(app);
 
+// デフォルトエクスポート
 export default app;
