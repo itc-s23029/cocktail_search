@@ -1,16 +1,96 @@
 import React, { FC, useState } from 'react';
-import Image from 'next/image';  // ここで Image をインポート
+import Image from 'next/image';
+
+interface Cocktail {
+    name: string;
+    imageUrl: string;
+    material: string;
+    howToMake: string;
+    description: string;
+    base: string;
+    tec: string;
+    taste: string;
+    style: string;
+    alc: string;
+    top: string;
+    glass: string;
+    color: string;
+    keyword: string; // タグ
+}
 
 const AdminCocktailEdit: FC = () => {
     const [imageUrl, setImageUrl] = useState<string | null>(null);
+    const [cocktailName, setCocktailName] = useState<string>('');
+    const [material, setMaterial] = useState<string>('');
+    const [howToMake, setHowToMake] = useState<string>('');
+    const [description, setDescription] = useState<string>('');
+    const [base, setBase] = useState<string>('');
+    const [tec, setTec] = useState<string>('');
+    const [taste, setTaste] = useState<string>('');
+    const [style, setStyle] = useState<string>('');
+    const [alc, setAlc] = useState<string>('');
+    const [top, setTop] = useState<string>('');
+    const [glass, setGlass] = useState<string>('');
+    const [color, setColor] = useState<string>('');
+    const [cocktailList, setCocktailList] = useState<Cocktail[]>([]);
+    const [selectedKeyword, setSelectedKeyword] = useState<string>('');
+    const [baseOptions,] = useState<string[]>([]); // baseの選択肢
+    const [tecOptions,] = useState<string[]>([]); // tecの選択肢
+    const [tasteOptions,] = useState<string[]>([]); // tasteの選択肢
+    const [styleOptions,] = useState<string[]>([]); // styleの選択肢
 
-    // 画像選択時に呼び出される関数
-    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files ? e.target.files[0] : null;
-        if (file) {
-            // 画像URLを生成してプレビュー用に表示
-            const objectUrl = URL.createObjectURL(file);
-            setImageUrl(objectUrl);
+    // カクテルの追加処理
+    const handleAddCocktail = () => {
+        if (
+            cocktailName &&
+            imageUrl &&
+            material &&
+            howToMake &&
+            description &&
+            selectedKeyword &&
+            base &&
+            tec &&
+            taste &&
+            style &&
+            alc &&
+            top &&
+            glass &&
+            color
+        ) {
+            const newCocktail: Cocktail = {
+                name: cocktailName,
+                imageUrl,
+                material,
+                howToMake,
+                description,
+                base,
+                tec,
+                taste,
+                style,
+                alc,
+                top,
+                glass,
+                color,
+                keyword: selectedKeyword,
+            };
+
+            setCocktailList([...cocktailList, newCocktail]);
+            setCocktailName('');
+            setImageUrl(null);
+            setMaterial('');
+            setHowToMake('');
+            setDescription('');
+            setBase('');
+            setTec('');
+            setTaste('');
+            setStyle('');
+            setAlc('');
+            setTop('');
+            setGlass('');
+            setColor('');
+            setSelectedKeyword('');
+        } else {
+            alert('すべてのフィールドを入力してください');
         }
     };
 
@@ -22,79 +102,139 @@ const AdminCocktailEdit: FC = () => {
 
             <main>
                 <div className="container">
-                    {/* 編集フォームの見出し */}
                     <h2>カクテル情報編集</h2>
-                </div>
 
-                {/* カクテル名 */}
-                <div>
-                    <label htmlFor="name">Name:</label>
-                    <input type="text" id="name" name="name" />
-                </div>
-
-                {/* 画像アップロード */}
-                <div>
-                    <label htmlFor="image">Add image:</label>
-                    <input
-                        type="file"
-                        id="image"
-                        name="image"
-                        accept="image/*"
-                        onChange={handleImageChange}
-                    />
-                </div>
-
-                {/* 画像プレビュー */}
-                {imageUrl && (
+                    {/* フォーム部分 */}
                     <div>
-                        <Image
-                            src={imageUrl}
-                            alt="Image Preview"
-                            width={100}  // 画像の幅
-                            height={100} // 画像の高さ
+                        <label htmlFor="name">カクテル名:</label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            value={cocktailName}
+                            onChange={(e) => setCocktailName(e.target.value)}
                         />
                     </div>
-                )}
-
-                {/* 他の入力フィールド */}
-                <div>
-                    <label htmlFor="Material">材料:</label>
-                    <textarea id="Material" name="Material" rows={4}></textarea>
-
-                    <div className="Keywords"></div>
-                    <div className="Base">Base:</div>
-                    <div className="Tec">Tec:</div>
-                    <div className="Taste">Taste:</div>
-
-                    <div className="Keywords2"></div>
-                    <div className="Style">Base:</div>
-                    <div className="Alc">Tec:</div>
-                    <div className="Top">Taste:</div>
-
-                    <div className="Keywords3"></div>
-                    <div className="Glass">Base:</div>
-                    <div className="Color">Tec:</div>
 
                     <div>
-                        <label htmlFor="Tag">タグ:</label>
+                        <label htmlFor="image">画像を追加:</label>
+                        <input
+                            type="file"
+                            id="image"
+                            name="image"
+                            accept="image/*"
+                            onChange={(e) => setImageUrl(URL.createObjectURL(e.target.files![0]))}
+                        />
+                    </div>
+
+                    {imageUrl && (
+                        <div>
+                            <Image src={imageUrl} alt="Image Preview" width={100} height={100} />
+                        </div>
+                    )}
+
+                    {/* 他のフォームフィールド */}
+                    <div>
+                        <label htmlFor="Material">材料:</label>
+                        <textarea
+                            id="Material"
+                            name="Material"
+                            rows={4}
+                            value={material}
+                            onChange={(e) => setMaterial(e.target.value)}
+                        ></textarea>
                     </div>
 
                     <div>
                         <label htmlFor="HowtoMake">作り方:</label>
-                        <textarea id="HowtoMake" name="HowtoMake" rows={4}></textarea>
+                        <textarea
+                            id="HowtoMake"
+                            name="HowtoMake"
+                            rows={4}
+                            value={howToMake}
+                            onChange={(e) => setHowToMake(e.target.value)}
+                        ></textarea>
+                    </div>
+
+                    {/* base、tec、taste、styleの選択肢 */}
+                    <div>
+                        <label htmlFor="base">Base:</label>
+                        <select
+                            id="base"
+                            value={base}
+                            onChange={(e) => setBase(e.target.value)}
+                        >
+                            <option value="">Baseを選択</option>
+                            {baseOptions.map((option, index) => (
+                                <option key={index} value={option}>
+                                    {option}
+                                </option>
+                            ))}
+                        </select>
                     </div>
 
                     <div>
-                        <label htmlFor="description">説明:</label>
-                        <textarea id="description" name="description" rows={4}></textarea>
+                        <label htmlFor="tec">Tec:</label>
+                        <select
+                            id="tec"
+                            value={tec}
+                            onChange={(e) => setTec(e.target.value)}
+                        >
+                            <option value="">Tecを選択</option>
+                            {tecOptions.map((option, index) => (
+                                <option key={index} value={option}>
+                                    {option}
+                                </option>
+                            ))}
+                        </select>
                     </div>
 
-                    {/* 追加ボタン */}
                     <div>
-                        <button>追加</button>
+                        <label htmlFor="taste">Taste:</label>
+                        <select
+                            id="taste"
+                            value={taste}
+                            onChange={(e) => setTaste(e.target.value)}
+                        >
+                            <option value="">Tasteを選択</option>
+                            {tasteOptions.map((option, index) => (
+                                <option key={index} value={option}>
+                                    {option}
+                                </option>
+                            ))}
+                        </select>
                     </div>
+
                     <div>
-                        <h2>カクテル一覧</h2>
+                        <label htmlFor="style">Style:</label>
+                        <select
+                            id="style"
+                            value={style}
+                            onChange={(e) => setStyle(e.target.value)}
+                        >
+                            <option value="">Styleを選択</option>
+                            {styleOptions.map((option, index) => (
+                                <option key={index} value={option}>
+                                    {option}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
+                    {/* その他のフィールドとカクテル追加ボタン */}
+                    <div>
+                        <button onClick={handleAddCocktail}>カクテルを追加</button>
+                    </div>
+
+                    <div>
+                        <h3>カクテルリスト</h3>
+                        <ul>
+                            {cocktailList.map((cocktail, index) => (
+                                <li key={index}>
+                                    {cocktail.name} - {cocktail.base} - {cocktail.tec}
+                                </li>
+                            ))}
+                        </ul>
                     </div>
                 </div>
             </main>
