@@ -1,7 +1,41 @@
-export default function history() {
+import Head from "next/head";
+import { useState } from "react"; // ★ 追加：メニューの開閉状態を管理
+import Nav from "../../components/nav"; // ★ 追加：ハンバーガーメニューをインポート
+import Link from "next/link";
+
+export default function History() {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
     return (
+
         <div>
-            <h1>歴史</h1>
+            <Head>
+                <title>Cocktail App</title>
+                <meta name="description" content="A cocktail app to explore, search, and add new cocktails"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <link rel="icon" href="/favicon.ico"/>
+            </Head>
+
+            <div className="p-fv">
+                <div className="color-label">
+                    <Link href="/">
+                        <div className="logo"></div>
+                    </Link>
+                    <h1 className="title">History</h1>
+                </div>
+
+                {/* ハンバーガーメニュー */}
+                <button className="hamburger-icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                    ☰
+                </button>
+                <div className={`menu-overlay ${isMenuOpen ? "open" : ""}`}>
+                    <button className="close-btn" onClick={() => setIsMenuOpen(false)}>×</button>
+                    <Nav />
+                </div>
+
+                {/* === 本文全体を囲むコンテナ === */}
+                <div className="history-content">
+                    <h1>歴史</h1>
             <p>
                 原始的なカクテルが作られはじめたのは、
                 古代ローマや古代ギリシャ、古代エジプトの時代だったと考えられている。
@@ -68,7 +102,7 @@ export default function history() {
                 これは薬用酒であるビターズが使われていたこととも整合する。
             </p>
             <h2>民族語源</h2>
-            <h4>「メキシコ王の娘」説</h4>
+            <h3>「メキシコ王の娘」説</h3>
             <p>
                 『サヴォイ・カクテルブック』で、「カクテルという言葉の起源」として特に紹介されている説。
                 19世紀のはじめ、アメリカ合衆国南部陸軍とアホロートル8世 (Axolotl VIII) 率いるメキシコ軍の間には小競り合いが絶えなかった。
@@ -88,7 +122,7 @@ export default function history() {
                 他の文献にも類似の説が示されている。ただし、19世紀はじめのメキシコにはすでに王はおらず、
                 アホロートル8世という名の王も存在していない。
             </p>
-            <h4>「コーラ・デ・ガジョ（木の名前）」説</h4>
+            <h3>「コーラ・デ・ガジョ（木の名前）」説</h3>
             <p>
                 国際バーテンダー協会が、カクテルの語源として採用している説。
                 また、サントリーの公式HPでもこの説が有名なものとして紹介されている。
@@ -119,7 +153,7 @@ export default function history() {
                 1969年10月に発行された全日本バーテンダー協会（All Nippon Bartenders Association）の機関誌によって、
                 この説が紹介されている。
             </p>
-            <h4>「四角軒」説</h4>
+            <h3>「四角軒」説</h3>
             <p>
                 「ベッチー・フラナガン（ベッツィー・フラグナンとも、Betsy Flanagan）」説や「雄鶏」説などとも呼ばれているが、
                 いずれにしても「四角軒」という名のバーが舞台であることから、
@@ -138,8 +172,8 @@ export default function history() {
                 以来四角軒で振舞われるミクスト・ドリンクには「コックテール」の名が与えられ、
                 その名が広まっていった。
             </p>
-            <h3>その他の説</h3>
-            <h4>「雄鶏の尻尾（コックス・テール）」説</h4>
+            <h2>その他の説</h2>
+            <h3>「雄鶏の尻尾（コックス・テール）」説</h3>
             <p>
                 飾りのため、あるいはグラスの中身にアルコールが含まれていることを示すために、
                 羽根をグラスに差す風習があったとされる。
@@ -152,12 +186,14 @@ export default function history() {
                 ・闘鶏の盛んだった頃、試合の結果、尻尾に羽を一番多く残した雄鶏を祝福して乾杯した故事が由来であるとの説
                 ・闘鶏の際に鶏を興奮させるために使用された火酒「コケール」あるいは「コックズ・エール（cock&rsquo;s ale）」が由来であるとの説
             </p>
-            <h4>「ニューオリンズの薬屋」説</h4>
+            <h3>「ニューオリンズの薬屋」説</h3>
             <p>
                 サン＝ドマングからアメリカのニューオリンズに移住してきた薬剤師アントワーヌ・アメデ・ペイショー（Antoine Amédée Peychaud）が今日ペイショーズ・ビターズ（英語版）と呼ばれるビターズを1834年に発明した。
                 これと砂糖、ブランデーを混ぜたものをコクティエ（フランス語: coquetier、フランス語でエッグスタンド）に入れて売っていたが、
                 これが評判となった。やがて、英語訛りのカクテルと呼ばれるようになった。
             </p>
+                </div>
+            </div>
         </div>
     )
 }

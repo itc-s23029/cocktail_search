@@ -102,13 +102,27 @@
     align-items: flex-start; /* ★ 左寄せ */
     padding-left: 200px; /* ★ 左端にぴったりくっつかないように余白を確保 */
     padding-top: 150px; /* ★ カラーラベルとの間隔を調整 */
+    position: relative;
+}
+
+.center-container {
+    position: fixed;        /* 画面全体に配置 */
+    top: 0;
+    left: 0;
+    width: 100vw;          /* ビューポートの幅全体 */
+    height: 100vh;         /* ビューポートの高さ全体 */
+    display: flex;         /* フレックスボックスで中央揃え */
+    justify-content: center;
+    align-items: center;
+    z-index: 9998;         /* 最前面に表示 */
+    background: rgba(0, 0, 0, 0.3); /* 背景を半透明にして強調 */
 }
 
 .pgmove {
     background: #dedede url('../../public/arrowR.png')  no-repeat;
     background-position: 320px;
     background-size: 23% auto;
-    margin: 15px; /* ボタン同士の間隔 */
+    margin: 50px; /* ボタン同士の間隔 */
     padding: 30px 0;
     width: 400px;
     font-size: 45px; /* ★ ボタンの文字サイズを大きく */
@@ -148,7 +162,7 @@
     background: rgba(0, 0, 0, 0.9);
     color: white;
     padding: 20px;
-    transition: right 0.5s ease-in-out;
+    transition: right 0.3s ease-in-out;
     z-index: 25;
 }
 
@@ -185,3 +199,356 @@
     font-size: 25px;
 }
 
+.loginbt{
+    position: relative;  /* ボタンを中央配置 */
+    z-index: 9999;      /* ★ 他の要素よりも前面に配置 */
+    height: 100px;
+    background: #dedede url("../../public/Gicon.png") no-repeat left;
+    background-size: 30% auto;
+
+    width: 320px;
+    font-size: 30px;
+    text-align: right;
+
+    display: flex; /* ★ フレックスボックスを適用 */
+    align-items: center; /* ★ 垂直方向（上下）の中央揃え */
+    justify-content: flex-end; /* ★ 水平方向（横）の右寄せ */
+
+    padding-right: 20px; /* ★ 右の余白を調整（テキストを少し内側に） */
+
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    color: #0a0a0a;
+}
+
+/* ボタンホバー時のエフェクト */
+.loginbt:hover {
+    background-color: #c0c0c0;
+    transform: scale(1.05);
+}
+
+.searchbt {
+    background: #dedede url('../../public/arrowU.jpg')  no-repeat; /* ボタンの背景に画像を追加 */
+    background-position: 400px; /* 背景画像の位置を右寄せ */
+    background-size: 20% auto; /* 背景画像のサイズ調整 */
+    margin: 30px; /* ボタン間の余白 */
+    padding: 20px 0; /* 上下の内側余白 */
+    width: 500px; /* ボタンの幅を指定 */
+    font-size: 45px; /* 文字サイズを大きく設定 */
+    text-align: center; /* テキストを中央寄せ */
+    border-radius: 8px; /* ボタンの角を丸める */
+    cursor: pointer; /* マウスカーソルをポインターに */
+    transition: all 0.3s ease-in-out; /* アニメーションを適用 */
+    color: #0a0a0a; /* テキストの色 */
+    display: inline-block; /* インラインブロック要素として配置 */
+}
+
+.search-box {
+    width: 500px; /* ★ 検索ボックスの幅 */
+    height: 110px; /* ★ 高さ */
+    padding: 10px; /* ★ 内側の余白 */
+    border: 1px solid #ccc; /* ★ 枠線 */
+    border-radius: 8px; /* ★ 角を丸く */
+    font-size: 30px; /* ★ 文字サイズ */
+    outline: none; /* ★ フォーカス時の枠線を削除 */
+}
+
+.enterbt {
+    background: #dedede url('../../public/arrowU.jpg')  no-repeat; /* ボタンの背景に画像を追加 */
+    background-position: 320px; /* 背景画像の位置を右寄せ */
+    background-size: 20% auto; /* 背景画像のサイズ調整 */
+    padding: 10px 0; /* 上下の内側余白 */
+    width: 200px; /* ボタンの幅を指定 */
+    font-size: 45px; /* 文字サイズを大きく設定 */
+    text-align: center; /* テキストを中央寄せ */
+    border-radius: 8px; /* ボタンの角を丸める */
+    cursor: pointer; /* マウスカーソルをポインターに */
+    transition: all 0.3s ease-in-out; /* アニメーションを適用 */
+    color: #0a0a0a; /* テキストの色 */
+    display: inline-block; /* インラインブロック要素として配置 */
+}
+
+.haiti {
+    position: absolute;
+    top: 180px;
+    right: 150px;
+    flex-direction: column;
+}
+
+.listhaiti{
+    position: absolute;
+    top: 650px;
+    right: 300px;
+}
+
+.button-2line {
+    display: grid;  /* ★ グリッドレイアウトを使用 */
+    grid-template-columns: repeat(2, 1fr); /* ★ 2列均等配置 */
+    row-gap: 30px; /* ★ ボタンの上下間隔を広げる */
+    column-gap: 20px; /* ★ ボタンの左右間隔を調整 */
+    justify-content: center; /* ★ 中央揃え */
+
+    position: relative; /* ★ 他の要素との重なりを防ぐ */
+    margin-top: 150px; /* ★ カラーラベルの高さ分の余白を確保 */
+
+    max-height: 85%; /* ★ コンテナの高さを制限（必要に応じて変更） */
+    overflow-y: auto; /* ★ 縦スクロールを許可 */
+    padding: 20px;
+}
+
+.cocktail-button {
+    background: #ffffff;
+    width: 850px; /* ★ ボタンを横長に */
+    height: 500px; /* ★ ボタンの高さ */
+    font-size: 20px;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    color: #0a0a0a;
+    border: none;
+    position: relative; /* ★ 疑似要素を使うために `relative` を指定 */
+    display: flex; /* ★ 画像とテキストを横並びに */
+    align-items: center;
+    padding-left: 15px;
+}
+
+.button-text {
+    position: absolute;
+    top: 5px; /* ★ 上部に配置 */
+    right: 10px; /* ★ 右寄せ */
+    font-size: 50px; /* ★ 文字サイズ */
+    font-weight: bold;
+    color: #333; /* ★ 文字色 */
+}
+
+.button-text::after {
+    content: ""; /* ★ ラインを表示するための空の要素 */
+    display: block;
+    width: 100%; /* ★ テキストの幅いっぱいに */
+    height: 2px; /* ★ ラインの太さ */
+    background-color: black; /* ★ ラインの色 */
+    margin-top: 2px; /* ★ テキストとの間隔を調整 */
+}
+
+
+.button-icon {
+    width: 45%; /* ★ 画像のサイズ */
+    height: 90%;
+    margin-right: 10px; /* ★ テキストとの間隔 */
+}
+
+.cocktail-button::after {
+    content: "詳細へ"; /* ★ ラベルのテキスト */
+    position: absolute;
+    bottom: 0; /* ★ ボタンの下端に配置 */
+    left: 0;
+    width: 100%; /* ★ ボタンの横幅いっぱいに広げる */
+    height: 50px; /* ★ ラベルの高さ */
+    background: black; /* ★ 黒い背景 */
+    color: white; /* ★ テキストの色を白に */
+    font-size: 50px; /* ★ 文字サイズ */
+    text-align: right;
+    line-height: 50px; /* ★ 高さに合わせてテキストを中央に */
+    border-radius: 0 0 8px 8px; /* ★ 角を丸く */
+}
+
+.cocktail-button:hover {
+    background-color: #ffffff;
+    transform: scale(1.05);
+}
+
+
+
+
+
+.Add-2line {
+    display: grid;  /* ★ グリッドレイアウトを使用 */
+    grid-template-columns: repeat(2, 1fr); /* ★ 2列均等配置 */
+    row-gap: 30px; /* ★ ボタンの上下間隔を広げる */
+    column-gap: 20px; /* ★ ボタンの左右間隔を調整 */
+    justify-content: center; /* ★ 中央揃え */
+
+    position: relative; /* ★ 他の要素との重なりを防ぐ */
+    margin-top: 10px; /* ★ カラーラベルの高さ分の余白を確保 */
+
+    max-height: 38%; /* ★ コンテナの高さを制限（必要に応じて変更） */
+    overflow-y: auto; /* ★ 縦スクロールを許可 */
+    padding: 20px;
+}
+
+.Add-button {
+    background: #ffffff;
+    width: 850px; /* ★ ボタンを横長に */
+    height: 200px; /* ★ ボタンの高さ */
+    font-size: 20px;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    color: #0a0a0a;
+    border: none;
+    position: relative; /* ★ 疑似要素を使うために `relative` を指定 */
+    display: flex; /* ★ 画像とテキストを横並びに */
+    align-items: center;
+    padding-left: 15px;
+}
+
+.Add-text {
+    position: absolute;
+    top: 5px; /* ★ 上部に配置 */
+    left: 10px;
+    font-size: 70px; /* ★ 文字サイズ */
+    font-weight: bold;
+    color: #333; /* ★ 文字色 */
+}
+
+.Add-text::after {
+    content: ""; /* ★ ラインを表示するための空の要素 */
+    display: block;
+    width: 100%; /* ★ テキストの幅いっぱいに */
+    height: 2px; /* ★ ラインの太さ */
+    background-color: black; /* ★ ラインの色 */
+    margin-top: 2px; /* ★ テキストとの間隔を調整 */
+}
+
+.Add-button::after {
+    content: "詳細へ"; /* ★ ラベルのテキスト */
+    position: absolute;
+    bottom: 0; /* ★ ボタンの下端に配置 */
+    left: 0;
+    width: 100%; /* ★ ボタンの横幅いっぱいに広げる */
+    height: 50px; /* ★ ラベルの高さ */
+    background: black; /* ★ 黒い背景 */
+    color: white; /* ★ テキストの色を白に */
+    font-size: 50px; /* ★ 文字サイズ */
+    text-align: right;
+    line-height: 50px; /* ★ 高さに合わせてテキストを中央に */
+    border-radius: 0 0 8px 8px; /* ★ 角を丸く */
+}
+
+.Add-button:hover {
+    background-color: #ffffff;
+    transform: scale(1.05);
+}
+
+
+/* === 全体のフォームエリアのデザイン === */
+.form-wrapper {
+    width: 100%; /* ★ 幅を調整 */
+    margin-top: 150px;
+    padding: 20px;
+    background-color: white; /* ★ 背景を白に */
+    border-radius: 8px; /* ★ 角を丸く */
+    box-shadow:  4px 6px rgba(0, 0, 0, 0.1); /* ★ 影をつける */
+    color: #0a0a0a;
+}
+
+/* === 左右に並べるためのコンテナ === */
+.form-container {
+    display: flex;
+    justify-content: space-between; /* ★ 左右に分ける */
+    align-items: flex-start;
+    gap: 50px; /* ★ 左右のフォーム間の余白 */
+}
+
+/* === 左側のフォーム === */
+.form-left {
+    width: 45%; /* ★ 幅を調整 */
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* ★ 各フィールドの間隔 */
+}
+
+/* === 右側のフォーム === */
+.form-right {
+    width: 45%; /* ★ 幅を調整 */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* === 各ラベルのスタイル === */
+label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* === 入力フィールドのスタイル === */
+.input-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* === How To Make のテキストエリア === */
+.input-textarea {
+    width: 100%;
+    height: 250px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* === 送信ボタンのコンテナ（中央揃え） === */
+.submit-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* === 送信ボタンのスタイル === */
+.submit-btn {
+    background-color: #000000;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.submit-btn:hover {
+    background-color: #486ae7;
+}
+
+
+/* === 本文を囲む半透明の黒いコンテナ === */
+.history-content {
+    position: absolute;
+    top: 150px;  /* カラーバーと重ならないように調整 */
+    left: 50%;
+    transform: translateX(-50%); /* 中央寄せ */
+    width: 80%;  /* 幅を適度に調整 */
+    max-height: 83vh; /* 高さを制限しスクロール可能に */
+    background: rgba(0, 0, 0, 0.9); /* 半透明の黒背景 */
+    padding: 30px;
+    border-radius: 10px;
+    color: white; /* 白文字 */
+    overflow-y: auto; /* 縦スクロールを許可 */
+}
+
+/* === スクロールバーのデザイン調整（オプション） === */
+.history-content::-webkit-scrollbar {
+    width: 10px;
+}
+
+.history-content::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.5); /* スクロールバーの色 */
+    border-radius: 5px;
+}
+
+/* === 見出しデザイン === */
+.history-content h1 {
+    font-size: 50px; /* 大きくする */
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 3px solid white; /* 下線を追加 */
+    padding-bottom: 10px;
+}
