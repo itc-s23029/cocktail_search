@@ -227,6 +227,14 @@
     transform: scale(1.05);
 }
 
+/* === ドロップダウンメニューのスタイル === */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+    width: 100%;
+}
+
 .searchbt {
     /* ボタンの背景に画像を追加 */
     /* 背景画像の位置を右寄せ */
@@ -243,6 +251,41 @@
     color: #0a0a0a; /* テキストの色 */
     display: inline-block; /* インラインブロック要素として配置 */
 }
+
+.dropdown-menu {
+    position: absolute;
+    top: 80%;
+    left: 30px;
+    width: 500px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 0;
+    list-style: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    color: #0a0a0a;
+}
+
+/* === 「味」と「タグ」のドロップダウンメニュー（ボタンの上に表示） === */
+.dropdown-menu.up {
+    top: auto;  /* ✅ デフォルトの位置を無効化 */
+    bottom: 80%;  /* ✅ ボタンの上に配置 */
+    left: 30px;
+}
+
+.dropdown-menu li {
+    padding: 10px;
+    font-size: 40px; /* メニューのフォントサイズを調整 */
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.dropdown-menu li:hover {
+    background: #f0f0f0;
+}
+
 
 .search-box {
     width: 500px; /* ★ 検索ボックスの幅 */
@@ -264,7 +307,11 @@
     font-size: 45px; /* 文字サイズを大きく設定 */
     text-align: center; /* テキストを中央寄せ */
     border-radius: 8px; /* ボタンの角を丸める */
-    cursor: pointer; /* マウスカーソルをポインターに */
+    cursor: pointer; /* マ
+
+.searchbt:hover {
+    background: #c0c0c0;
+}ウスカーソルをポインターに */
     transition: all 0.3s ease-in-out; /* アニメーションを適用 */
     color: #0a0a0a; /* テキストの色 */
     display: inline-block; /* インラインブロック要素として配置 */
@@ -553,3 +600,4 @@ label {
     border-bottom: 3px solid white; /* 下線を追加 */
     padding-bottom: 10px;
 }
+
