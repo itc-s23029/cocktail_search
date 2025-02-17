@@ -3,6 +3,8 @@ import Router from 'next/router';
 import { GoogleAuthProvider, signInWithPopup, signOut, setPersistence, browserSessionPersistence, onAuthStateChanged } from 'firebase/auth';
 import { auth } from '@/utils/firebase'; // auth をインポート
 import { AuthContext } from '@/Context/Auth';
+import Link from "next/link";
+
 
 const Login: FC = () => {
     const { currentUser } = useContext(AuthContext);
@@ -52,17 +54,17 @@ const Login: FC = () => {
             });
     };
 
-    // サインアウト（ログアウト）する関数
-    const signOutUser = () => {
-        signOut(auth)
-            .then(() => {
-                Router.push('/login'); // ログアウト後にログインページにリダイレクト
-            })
-            .catch((error) => {
-                console.error(error);
-                setError("ログアウトに失敗しました。");
-            });
-    };
+    useEffect(() => {
+        if (currentUser) {
+            // 管理者ユーザーの場合は /admin にリダイレクト
+            const adminEmails = process.env.NEXT_PUBLIC_ADMIN_GMAILS?.split(',') || [];
+            if (adminEmails.includes(currentUser.email!)) {
+                Router.push('/'); // 管理者用カクテル編集ページにリダイレクト
+            } else {
+                Router.push('/'); // 一般ユーザーの場合はホームページにリダイレクト
+            }
+        }
+    }, [currentUser]);
 
     // Firebase Authenticationの状態を監視
     useEffect(() => {
@@ -82,23 +84,22 @@ const Login: FC = () => {
 
     return (
         <div>
-            <header>
-                <h1>ログイン画面</h1>
-            </header>
-            <main>
-                <div className="container">
-                    {error && <p style={{ color: 'red' }}>{error}</p>}
-
-                    {!currentUser ? (
-                        <button onClick={signInWithGoogle}>Googleでログイン</button>
-                    ) : (
-                        <>
-                            <p>ようこそ、{currentUser.displayName}さん</p>
-                            <button onClick={signOutUser}>ログアウト</button>
-                        </>
-                    )}
+            <div className="p-fv">
+                <div className="color-label">
+                    <Link href="/">
+                        <div className="logo"></div>
+                    </Link>
+                    <h1 className="title">LOGIN</h1>
                 </div>
-            </main>
+
+                <div className="center-container">
+                    <div className="container-">
+                        {error && <p style={{ color: 'red' }}>{error}</p>}
+                        <button className="loginbt" onClick={signInWithGoogle}>Googleで続行</button>
+                    </div>
+
+                </div>
+            </div>
         </div>
     );
 };
