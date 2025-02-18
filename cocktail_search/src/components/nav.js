@@ -25,16 +25,6 @@ export default function Nav() {
                     </Link>
                 </li>
                 <li>
-                    <Link href="/fadd">
-                        フード追加
-                    </Link>
-                </li>
-                <li>
-                    <Link href="/fsearch">
-                        フード検索・一覧
-                    </Link>
-                </li>
-                <li>
                     <Link href="/history">
                         カクテル歴史紹介
                     </Link>
