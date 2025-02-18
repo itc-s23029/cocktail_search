@@ -547,6 +547,7 @@ label {
 .submit-container {
     text-align: center;
     margin-top: 20px;
+    right: 0;
 }
 
 /* === 送信ボタンのスタイル === */
@@ -601,3 +602,45 @@ label {
     padding-bottom: 10px;
 }
 
+/* === 画像アップロードのスタイル（左寄せ） === */
+.image-upload {
+    text-align: left;  /* 左寄せ */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;  /* 上下の余白 */
+    margin: 10px 0;
+}
+
+.image-label {
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.image-preview {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* 画像と削除ボタンの間隔 */
+}
+
+.preview-img {
+    width: 200px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.remove-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.remove-btn:hover {
+    background-color: darkred;
+}

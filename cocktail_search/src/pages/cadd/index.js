@@ -8,6 +8,25 @@ export default function Cadd() {
     const router = useRouter();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+    const [image, setImage] = useState(null);
+
+    // 画像選択時の処理
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                setImage(reader.result); // 画像をプレビュー表示
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    // 画像削除処理
+    const handleRemoveImage = () => {
+        setImage(null);
+    };
+
     // ボタンのラベルリスト（20個）
     const buttonLabels = [
         "カクテル1", "カクテル2", "カクテル3", "カクテル4", "カクテル5",
@@ -52,9 +71,20 @@ export default function Cadd() {
                             <label>Name:
                                 <input type="text" name="name" className="input-field"/>
                             </label>
-                            <label>Combination:
-                                <input type="text" name="combination" className="input-field"/>
-                            </label>
+                            {/* 画像アップロード */}
+                            <div className="image-upload">
+                                <label className="image-label">画像を選択:
+                                    <input type="file" accept="image/*" onChange={handleImageChange} />
+                                </label>
+
+                                {/* 画像プレビュー */}
+                                {image && (
+                                    <div className="image-preview">
+                                        <img src={image} alt="カクテル画像" className="preview-img"/>
+                                        <button className="remove-btn" onClick={handleRemoveImage}>削除</button>
+                                    </div>
+                                )}
+                            </div>
                             <label>Tag:
                                 <input type="text" name="tag" className="input-field"/>
                             </label>
