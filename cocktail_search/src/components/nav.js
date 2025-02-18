@@ -15,7 +15,7 @@ export default function Nav() {
                     </Link>
                 </li>
                 <li>
-                    <Link href="/csearch">
+                    <Link href="/page">
                         カクテル検索
                     </Link>
                 </li>
