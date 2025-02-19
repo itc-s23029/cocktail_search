@@ -10,10 +10,8 @@ export default function Clist() {
 
     // ボタンのラベルリスト（20個）
     const buttonLabels = [
-        "カクテル1", "カクテル2", "カクテル3", "カクテル4", "カクテル5",
-        "カクテル6", "カクテル7", "カクテル8", "カクテル9", "カクテル10",
-        "カクテル11", "カクテル12", "カクテル13", "カクテル14", "カクテル15",
-        "カクテル16", "カクテル17", "カクテル18", "カクテル19", "カクテル20"
+        "マティーニ", "ソルティドッグ", "モヒート", "ホワイトレディ", "カルーアミルク",
+        "ギムレット", "マンハッタン", "アレキサンダー",
     ];
 
     return (
@@ -46,7 +44,11 @@ export default function Clist() {
                 <div className="button-2line">
                     {buttonLabels.map((label, index) => (
                         <button key={index} className="cocktail-button" onClick={() => router.push("/")}>
-                            <img src="/cockpic.jpg" alt="icon" className="button-icon" />
+                            <img
+                                src={label === "マティーニ"　? "/mate.jpeg" : "/cockpic.jpg"}
+                                alt="icon"
+                                className="button-icon"
+                            />
                             <span className="button-text">{label}</span>
 
                         </button>
