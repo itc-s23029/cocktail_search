@@ -39,7 +39,7 @@ export default function Home() {
               {/* ★ コンテンツを別の `content` コンテナで囲む */}
               <div className="button-container">
                   <button className="pgmove" onClick={() => router.push("/clist")}>cocktail list</button>
-                  <button className="pgmove" onClick={() => router.push("/page")}>cocktail search</button>
+                  <button className="pgmove" onClick={() => router.push("/csearch")}>cocktail search</button>
                   <button className="pgmove" onClick={() => router.push("/cadd")}>cocktail add</button>
               </div>
               <div>
