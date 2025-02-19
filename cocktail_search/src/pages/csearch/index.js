@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useState } from "react"; // ✅ useState を React からインポート
-import { useRouter } from "next/router";
+import { useRouter } from "next/router"; // ✅ Next.js の useRouter をインポート
 import Link from "next/link";
 import Nav from "../../components/nav";
 
@@ -24,6 +24,11 @@ export default function Search() {
     const techniqueOptions = ["シェイク", "ステア", "ビルド"];
     const tasteOptions = ["甘口", "中甘口", "中口", "中辛口","辛口"];
     const tagOptions = ["スタンダード", "オリジナル", "トロピカル", "エレガント","歴史ある"];
+
+    // 検索ボタンがクリックされた時に /csearch に遷移する
+    const handleSearch = () => {
+        router.push("/casearch");
+    };
 
     return (
         <>
@@ -120,7 +125,7 @@ export default function Search() {
                     {/* 検索ボックス */}
                     <div className="haiti">
                         <input type="text" className="search-box" placeholder="カクテルを検索..." />
-                        <button className="enterbt">検索</button>
+                        <button className="enterbt" type="button" onClick={handleSearch}>検索</button>
                     </div>
 
                     {/* カクテルリストへのリンク */}
