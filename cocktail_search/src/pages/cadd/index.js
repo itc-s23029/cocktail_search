@@ -28,12 +28,12 @@ export default function Cadd() {
     };
 
     // ボタンのラベルリスト（20個）
-    const buttonLabels = [
+/*    const buttonLabels = [
         "ジントニック", "ジンパック", "ジンライム", "ジンフィズ", "フレンチ75",
         "ピンクレディ", "カクテル7", "カクテル8", "カクテル9", "カクテル10",
         "カクテル11", "カクテル12", "カクテル13", "カクテル14", "カクテル15",
         "カクテル16", "カクテル17", "カクテル18", "カクテル19", "カクテル20"
-    ];
+    ];*/
 
     // 追加ボタンを押した時に /caadd に遷移する
     const handleAddButtonClick = () => {
@@ -41,13 +41,13 @@ export default function Cadd() {
     };
 
     // ボタンクリック処理
-    const handleButtonClick = (label) => {
+/*    const handleButtonClick = (label) => {
         if (label === "ジントニック") {
             router.push("/gin");
         } else {
             router.push("/");
         }
-    };
+    };*/
 
     return (
         <>
@@ -122,13 +122,13 @@ export default function Cadd() {
                 </div>
 
                 {/* スクロール可能なボタン一覧 */}
-                <div className="Add-2line">
+{/*                <div className="Add-2line">
                     {buttonLabels.map((label, index) => (
                         <button key={index} className="Add-button" onClick={() => handleButtonClick(label)}>
                             <span className="Add-text">{label}</span>
                         </button>
                     ))}
-                </div>
+                </div>*/}
             </div>
         </>
     );

@@ -29,10 +29,7 @@ export default function Caadd() {
 
     // ボタンのラベルリスト（変更後のカクテル名）
     const buttonLabels = [
-        "マティーニ", "ジントニック", "ジンバック", "ジンライム", "ジンフィズ",
-        "フレンチ75", "ピンクレディ", "カクテル8", "カクテル9", "カクテル10",
-        "カクテル11", "カクテル12", "カクテル13", "カクテル14", "カクテル15",
-        "カクテル16", "カクテル17", "カクテル18", "カクテル19", "カクテル20"
+        "カシスモーメント"
     ];
 
     // 追加ボタンを押した時に /caadd に遷移する
@@ -42,7 +39,7 @@ export default function Caadd() {
 
     // ボタンを押した際の遷移処理
     const handleButtonClick = (label) => {
-        if (label === "マティーニ") {
+        if (label === "カシスモーメント") {
             router.push("/martini"); // マティーニの場合は/martiniへ遷移
             setShowToast(true);  // マティーニが追加されたトーストを表示
             setTimeout(() => setShowToast(false), 3000); // 3秒後に通知を消す
