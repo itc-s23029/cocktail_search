@@ -1,29 +1,20 @@
 import Head from "next/head";
-import { useState } from "react"; // ✅ useState を React からインポート
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+import { useState } from "react"; // ★ 追加：メニューの開閉状態を管理
+import Nav from "../../components/nav"; // ★ 追加：ハンバーガーメニューをインポート
 import Link from "next/link";
-import Nav from "../../components/nav";
 
-export default function Search() {
-    const router = useRouter(); // ✅ Next.js のルーターを取得
-    const [isMenuOpen, setIsMenuOpen] = useState(false); // ✅ useState でメニューの開閉を管理
+export default function Clist() {
+    const router = useRouter();
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    // ✅ 各ドロップダウンの状態を管理
-    const [selectedBase, setSelectedBase] = useState("ベース");
-    const [selectedTechnique, setSelectedTechnique] = useState("技法");
-    const [selectedTaste, setSelectedTaste] = useState("味");
-    const [selectedTag, setSelectedTag] = useState("タグ");
-
-    const [isBaseOpen, setIsBaseOpen] = useState(false);
-    const [isTechniqueOpen, setIsTechniqueOpen] = useState(false);
-    const [isTasteOpen, setIsTasteOpen] = useState(false);
-    const [isTagOpen, setIsTagOpen] = useState(false);
-
-    // ✅ 各カテゴリの選択肢
-    const baseOptions = ["ウォッカ", "ジン", "ラム", "テキーラ", "ウイスキー"];
-    const techniqueOptions = ["シェイク", "ステア", "ビルド"];
-    const tasteOptions = ["甘口", "中甘口", "中口", "中辛口","辛口"];
-    const tagOptions = ["スタンダード", "オリジナル", "トロピカル", "エレガント","歴史ある"];
+    // ボタンのラベルリスト（20個）
+    const buttonLabels = [
+        "カクテル1", "カクテル2", "カクテル3", "カクテル4", "カクテル5",
+        "カクテル6", "カクテル7", "カクテル8", "カクテル9", "カクテル10",
+        "カクテル11", "カクテル12", "カクテル13", "カクテル14", "カクテル15",
+        "カクテル16", "カクテル17", "カクテル18", "カクテル19", "カクテル20"
+    ];
 
     return (
         <>
@@ -39,7 +30,7 @@ export default function Search() {
                     <Link href="/">
                         <div className="logo"></div>
                     </Link>
-                    <h1 className="title">Cocktail Search</h1>
+                    <h1 className="title">Cocktail List</h1>
                 </div>
 
                 {/* ハンバーガーメニュー */}
@@ -51,82 +42,15 @@ export default function Search() {
                     <Nav />
                 </div>
 
-                {/* ドロップダウンボタン */}
-                <div className="button-container">
-                    {/* ベース */}
-                    <div className="dropdown">
-                        <button className="searchbt" onClick={() => setIsBaseOpen(!isBaseOpen)}>
-                            {selectedBase}
+                {/* スクロール可能なボタン一覧 */}
+                <div className="button-2line">
+                    {buttonLabels.map((label, index) => (
+                        <button key={index} className="cocktail-button" onClick={() => router.push("/")}>
+                            <img src="/cockpic.jpg" alt="icon" className="button-icon" />
+                            <span className="button-text">{label}</span>
+
                         </button>
-                        {isBaseOpen && (
-                            <ul className="dropdown-menu">
-                                {baseOptions.map((option, index) => (
-                                    <li key={index} onClick={() => { setSelectedBase(option); setIsBaseOpen(false); }}>
-                                        {option}
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-                    </div>
-
-                    {/* 技法 */}
-                    <div className="dropdown">
-                        <button className="searchbt" onClick={() => setIsTechniqueOpen(!isTechniqueOpen)}>
-                            {selectedTechnique}
-                        </button>
-                        {isTechniqueOpen && (
-                            <ul className="dropdown-menu">
-                                {techniqueOptions.map((option, index) => (
-                                    <li key={index} onClick={() => { setSelectedTechnique(option); setIsTechniqueOpen(false); }}>
-                                        {option}
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-                    </div>
-
-                    {/* 味 */}
-                    <div className="dropdown">
-                        <button className="searchbt" onClick={() => setIsTasteOpen(!isTasteOpen)}>
-                            {selectedTaste}
-                        </button>
-                        {isTasteOpen && (
-                            <ul className="dropdown-menu up">
-                                {tasteOptions.map((option, index) => (
-                                    <li key={index} onClick={() => { setSelectedTaste(option); setIsTasteOpen(false); }}>
-                                        {option}
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-                    </div>
-
-                    {/* タグ */}
-                    <div className="dropdown">
-                        <button className="searchbt" onClick={() => setIsTagOpen(!isTagOpen)}>
-                            {selectedTag}
-                        </button>
-                        {isTagOpen && (
-                            <ul className="dropdown-menu up">
-                                {tagOptions.map((option, index) => (
-                                    <li key={index} onClick={() => { setSelectedTag(option); setIsTagOpen(false); }}>
-                                        {option}
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-                    </div>
-
-                    {/* 検索ボックス */}
-                    <div className="haiti">
-                        <input type="text" className="search-box" placeholder="カクテルを検索..." />
-                        <button className="enterbt">検索</button>
-                    </div>
-
-                    {/* カクテルリストへのリンク */}
-                    <div className="listhaiti">
-                        <button className="pgmove" onClick={() => router.push("/clist")}>cocktail list</button>
-                    </div>
+                    ))}
                 </div>
             </div>
         </>
