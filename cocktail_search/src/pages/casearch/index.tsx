@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { useRouter } from "next/router"; // ✅ Next.js の useRouter をインポート
 import Link from "next/link"; // ✅ Link を next/link からインポート
 
 const ginCocktails = [
@@ -12,8 +11,6 @@ const ginCocktails = [
 ];
 
 export default function Casearch() {
-    const router = useRouter();
-
     return (
         <>
             <Head>
