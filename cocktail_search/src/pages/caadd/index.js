@@ -83,7 +83,7 @@ export default function Caadd() {
                 {/* トーストメッセージ */}
                 {showToast && (
                     <div className="toast-message">
-                        マティーニを追加しました
+                        カシスモーメントを追加しました
                     </div>
                 )}
 
