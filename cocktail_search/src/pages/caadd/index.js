@@ -1,14 +1,14 @@
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Head from "next/head";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Nav from "../../components/nav";
 
-export default function Cadd() {
+export default function Caadd() {
     const router = useRouter();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-
     const [image, setImage] = useState(null);
+    const [showToast, setShowToast] = useState(false); // トーストの表示状態を管理
 
     // 画像選択時の処理
     const handleImageChange = (event) => {
@@ -27,10 +27,10 @@ export default function Cadd() {
         setImage(null);
     };
 
-    // ボタンのラベルリスト（20個）
+    // ボタンのラベルリスト（変更後のカクテル名）
     const buttonLabels = [
-        "ジントニック", "ジンパック", "ジンライム", "ジンフィズ", "フレンチ75",
-        "ピンクレディ", "カクテル7", "カクテル8", "カクテル9", "カクテル10",
+        "マティーニ", "ジントニック", "ジンパック", "ジンライム", "ジンフィズ",
+        "フレンチ75", "ピンクレディ", "カクテル8", "カクテル9", "カクテル10",
         "カクテル11", "カクテル12", "カクテル13", "カクテル14", "カクテル15",
         "カクテル16", "カクテル17", "カクテル18", "カクテル19", "カクテル20"
     ];
@@ -40,14 +40,22 @@ export default function Cadd() {
         router.push("/caadd");
     };
 
-    // ボタンクリック処理
+    // ボタンを押した際の遷移処理
     const handleButtonClick = (label) => {
-        if (label === "ジントニック") {
-            router.push("/gin");
+        if (label === "マティーニ") {
+            router.push("/martini"); // マティーニの場合は/martiniへ遷移
+            setShowToast(true);  // マティーニが追加されたトーストを表示
+            setTimeout(() => setShowToast(false), 3000); // 3秒後に通知を消す
         } else {
-            router.push("/");
+            router.push("/"); // 他のボタンはホームに遷移
         }
     };
+
+    useEffect(() => {
+        // ページに入った時にトースト表示
+        setShowToast(true);
+        setTimeout(() => setShowToast(false), 3000); // 3秒後に通知を消す
+    }, []); // 空の依存配列で一度だけ実行
 
     return (
         <>
@@ -74,6 +82,13 @@ export default function Cadd() {
                     <button className="close-btn" onClick={() => setIsMenuOpen(false)}>×</button>
                     <Nav />
                 </div>
+
+                {/* トーストメッセージ */}
+                {showToast && (
+                    <div className="toast-message">
+                        マティーニを追加しました
+                    </div>
+                )}
 
                 {/* カラーラベルの下に白い空間を作成 */}
                 <div className="form-wrapper">
@@ -124,12 +139,38 @@ export default function Cadd() {
                 {/* スクロール可能なボタン一覧 */}
                 <div className="Add-2line">
                     {buttonLabels.map((label, index) => (
-                        <button key={index} className="Add-button" onClick={() => handleButtonClick(label)}>
+                        <button
+                            key={index}
+                            className="Add-button"
+                            onClick={() => handleButtonClick(label)} // クリック時にhandleButtonClickを呼ぶ
+                        >
                             <span className="Add-text">{label}</span>
                         </button>
                     ))}
                 </div>
             </div>
+
+            <style jsx>{`
+                .toast-message {
+                    position: fixed;
+                    top: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: #333;
+                    color: white;
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    font-size: 16px;
+                    z-index: 9999;
+                    opacity: 0.8;
+                    animation: fadeOut 3s ease-in-out forwards;
+                }
+
+                @keyframes fadeOut {
+                    0% { opacity: 1; }
+                    100% { opacity: 0; }
+                }
+            `}</style>
         </>
     );
 }
