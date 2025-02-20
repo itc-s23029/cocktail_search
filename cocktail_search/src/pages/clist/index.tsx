@@ -10,8 +10,14 @@ export default function Clist() {
 
     // ボタンのラベルリスト（20個）
     const buttonLabels = [
-        "カシスモーメント", "ソルティドッグ", "モヒート", "ホワイトレディ", "カルーアミルク",
-        "ギムレット", "マンハッタン", "アレキサンダー",
+        { name :"カシスモーメント", path : "kasisu" },
+        { name :"ソルティドッグ", path : "sotu" },
+        { name :"モヒート", path : "moho" },
+        { name :"ホワイトレディ", path : "howaito" },
+        { name :"カルーアミルク", path : "karua" },
+        { name :"ギムレット", path : "gimu" },
+        { name :"マンハッタン", path : "man" },
+        { name : "アレキサンダー", path: "areki" }
     ];
 
     return (
@@ -43,13 +49,13 @@ export default function Clist() {
                 {/* スクロール可能なボタン一覧 */}
                 <div className="button-2line">
                     {buttonLabels.map((label, index) => (
-                        <button key={index} className="cocktail-button" onClick={() => router.push("/")}>
+                        <button key={index} className="cocktail-button" onClick={() => router.push("kasisu")}>
                             <img
-                                src={label === "カシスモーメント"　? "/mate.jpeg" : "/cockpic.jpg"}
+                                src={label.name === "カシスモーメント"　? "/mate.jpeg" : "/cockpic.jpg"}
                                 alt="icon"
                                 className="button-icon"
                             />
-                            <span className="button-text">{label}</span>
+                            <span className="button-text">{label.name}</span>
 
                         </button>
                     ))}
