@@ -44,7 +44,7 @@ export default function Gin() {
                 boxSizing: "border-box",
             }}>
                 {/* 左上に配置するカクテル画像 */}
-                <img src="/cockpic.jpg" alt="cocktail icon" style={{
+                <img src="/mate.jpeg" alt="cocktail icon" style={{
                     position: "absolute",
                     top: "20px",
                     left: "20px",
@@ -74,7 +74,6 @@ export default function Gin() {
                     <p style={{
                         fontSize: "2.5rem",
                     }}>
-                        カシスを使ったカクテル
                     </p>
                 </div>
 
@@ -89,7 +88,7 @@ export default function Gin() {
                     fontSize: "40px", // フォントを大きく
                 }}>
                     <p><strong>材料:</strong></p>
-                    <p><strong>作り方:</strong></p>
+                    <p><strong>作り方:カシスを使ったカクテル</strong></p>
                 </div>
             </div>
 
