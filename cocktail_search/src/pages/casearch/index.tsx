@@ -1,16 +1,20 @@
 import Head from "next/head";
-import Link from "next/link"; // ✅ Link を next/link からインポート
+import Link from "next/link";
+import { useState } from "react";
+import Nav from "../../components/nav";
 
 const ginCocktails = [
-    "ジントニック",
-    "ジンバック",
-    "ジンライム",
-    "ジンフィズ",
-    "フレンチ75",
-    "ピンクレディ"
+    { name: "ジントニック", path: "/gin" },
+    { name: "ジンバック", path: "/ginpuck" },
+    { name: "ジンライム", path: "/ginlime" },
+    { name: "ジンフィズ", path: "/ginfizz" },
+    { name: "フレンチ75", path: "/french75" },
+    { name: "ピンクレディ", path: "/pinklady" }
 ];
 
 export default function Casearch() {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
     return (
         <>
             <Head>
@@ -19,65 +23,35 @@ export default function Casearch() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
 
-            <div className="container">
-                {/* ヘッダー */}
-                <div className="header">
+            <div className="p-fv">
+                <div className="color-label">
                     <Link href="/">
-                        <div className="logo">Logo</div>
+                        <div className="logo"></div>
                     </Link>
-                    <h1 className="title">ジンのカクテルリスト</h1>
+                    <h1 className="title">Cocktail Search</h1>
                 </div>
 
-                {/* カクテルリスト */}
-                <div className="cocktail-grid">
+                {/* ハンバーガーメニュー */}
+                <button className="hamburger-icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                    ☰
+                </button>
+                <div className={`menu-overlay ${isMenuOpen ? "open" : ""}`}>
+                    <button className="close-btn" onClick={() => setIsMenuOpen(false)}>×</button>
+                    <Nav />
+                </div>
+
+                {/* スクロール可能なボタン一覧 */}
+                <div className="button-2line">
                     {ginCocktails.map((cocktail, index) => (
-                        <div key={index} className="cocktail-item">
-                            {cocktail}
-                        </div>
+                        <Link href={cocktail.path} key={index}>
+                            <button className="cocktail-button">
+                                <img src="/cockpic.jpg" alt="icon" className="button-icon" />
+                                <span className="button-text">{cocktail.name}</span>
+                            </button>
+                        </Link>
                     ))}
                 </div>
             </div>
-
-            <style jsx>{`
-                .container {
-                    text-align: center;
-                    padding: 20px;
-                    background-color: #f9f9f9;
-                    min-height: 100vh;
-                    background-size: cover;
-                    background-position: center;
-                }
-                .header {
-                    background-color: rgba(51, 51, 51, 0.8); /* 半透明の黒背景 */
-                    padding: 20px;
-                    color: white;
-                }
-                .logo {
-                    font-size: 24px;
-                    font-weight: bold;
-                    cursor: pointer;
-                }
-                .title {
-                    font-size: 28px;
-                    margin-top: 10px;
-                }
-                .cocktail-grid {
-                    display: grid;
-                    grid-template-columns: repeat(2, 1fr);
-                    gap: 20px;
-                    max-height: 300px;
-                    overflow-y: auto;
-                    padding: 10px;
-                    border: 1px solid #ddd;
-                }
-                .cocktail-item {
-                    padding: 15px;
-                    background: #f5f5f5;
-                    border-radius: 8px;
-                    text-align: center;
-                    font-size: 18px;
-                }
-            `}</style>
         </>
     );
 }
