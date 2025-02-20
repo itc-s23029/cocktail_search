@@ -49,9 +49,12 @@ export default function Clist() {
                 {/* スクロール可能なボタン一覧 */}
                 <div className="button-2line">
                     {buttonLabels.map((label, index) => (
-                        <button key={index} className="cocktail-button" onClick={() => router.push("kasisu")}>
+                        <button
+                            key={index}
+                            className="cocktail-button"
+                            onClick={() => router.push(label.path)}>
                             <img
-                                src={label.name === "カシスモーメント"　? "/mate.jpeg" : "/cockpic.jpg"}
+                                src={label.name === "カシスモーメント"　? "/unnamed.jpg" : "/cockpic.jpg"}
                                 alt="icon"
                                 className="button-icon"
                             />

@@ -44,7 +44,7 @@ export default function Gin() {
                 boxSizing: "border-box",
             }}>
                 {/* 左上に配置するカクテル画像 */}
-                <img src="/mate.jpeg" alt="cocktail icon" style={{
+                <img src="/unnamed.jpg" alt="cocktail icon" style={{
                     position: "absolute",
                     top: "20px",
                     left: "20px",
